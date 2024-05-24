@@ -45,6 +45,7 @@ const EditForm: React.FC<EditFormProps> = ({ task, taskId, onSave }) => {
                     className={'border px-4 py-2'}
                     type="text"
                     name="title"
+                    value={title}
                     onChange={handleChange}
                 />
             </label>
@@ -53,6 +54,7 @@ const EditForm: React.FC<EditFormProps> = ({ task, taskId, onSave }) => {
                 <textarea
                     className={'border px-4 py-2'}
                     name="description"
+                    value={description}
                     onChange={handleChange}
                 />
             </label>
@@ -61,6 +63,7 @@ const EditForm: React.FC<EditFormProps> = ({ task, taskId, onSave }) => {
                 <select
                     className={'border px-4 py-2'}
                     name="status"
+                    value={status}
                     onChange={handleChange}
                 >
                     {statusList.map((statusOption, index) => (

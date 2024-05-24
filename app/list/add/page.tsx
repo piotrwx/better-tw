@@ -34,8 +34,9 @@ const AddTaskForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
+        <form className={'flex flex-wrap flex-col gap-6'} onSubmit={handleSubmit}>
+            <h1 className={'text-4xl mb-6'}>Title: {title}</h1>
+            <label className={'flex gap-4'}>
                 Title:
                 <input
                     type="text"
@@ -45,7 +46,7 @@ const AddTaskForm = () => {
                     className='border'
                 />
             </label>
-            <label>
+            <label className={'flex gap-4'}>
                 Description:
                 <input
                     type="text"
