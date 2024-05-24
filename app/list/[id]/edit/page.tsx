@@ -1,43 +1,47 @@
 'use client'
-import Link from "next/link";
-import Button from '@/components/buttons/button';
+import React, { useEffect, useState } from 'react';
+import EditForm from '@/components/form/task/edit';
+import { getTaskById, updateTask } from '@/hooks/taskController';
 
-const TaskList = [
-    {
-        'id': '1',
-        'title': 'task 1',
-        'description': 'Opis zadania numer 1',
-        'status': 'finished'
-    },
-    {
-        'id': '4',
-        'title': 'task 2',
-        'description': 'Opis zadania numer 2',
-        'status': 'pending'
-    },
-    {
-        'id': '10',
-        'title': 'task 3',
-        'description': 'Opis zadania numer 3',
-        'status': 'new'
-    }
-]
+interface EditTaskPageProps {
+    id: number;
+}
 
-export default function App(params: {id: int}) {
-    const navElement = TaskList[params.id]
+const EditTaskPage: React.FC<EditTaskPageProps> = (props: {id: number}) => {
+    const [task, setTask] = useState<null>(null);
+    const id = props.params.id;
+
+    useEffect(() => {
+        const fetchTask = async () => {
+            try {
+                const fetchedTask = await getTaskById(id);
+                console.log(id);
+
+                setTask(fetchedTask);
+            } catch (error) {
+                console.error('Error fetching task:', error);
+            }
+        };
+
+        fetchTask();
+    }, [id]);
+
+    const handleSave = async (updatedTask) => {
+        // Wywołujemy funkcję updateTask do zapisania zaktualizowanych danych
+        try {
+            console.log('Task updated successfully!');
+            await updateTask(updatedTask);
+
+        } catch (error) {
+            console.error('Error updating task:', error);
+        }
+    };
 
     return (
         <>
-            <div className={'flex cursor-pointer flex-col p-4 border w-full'}>
-                {
-                        <div className={'flex p-4 justify-between'} title={navElement.title}>
-                            <div>{navElement.title}</div>
-                            <div>{navElement.description}</div>
-                            <div>{navElement.status}</div>
-                            <Button type={'remove'} idParam={navElement.id}/>
-                        </div>
-                }
-            </div>
+            {task && <EditForm task={task} taskId={id} onSave={handleSave} />}
         </>
     );
-}
+};
+
+export default EditTaskPage;
