@@ -34,17 +34,24 @@ const ListPage = () => {
     }, []);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div
+            className={
+            'backdrop-blur-sm h-screen top-0 left-0 fixed w-screen flex justify-center' +
+                ' uppercase text-5xl content-center items-center justify-items-center'}>
+            Loading...</div>;
     }
 
     return (
         <>
             <div className='flex justify-between'>
                 <h1 className='text-7xl block'>Tasks</h1>
-                <Button typeButton="add"/>
+                <div className='flex gap-4 items-center'>
+                    New task:
+                    <Button typeButton="add"/>
+                </div>
             </div>
             <div className="flex flex-wrap w-full ">
-                <div className="flex p-4 justify-between w-full">
+                <div className="flex p-4 justify-between w-full text-xl my-10 bg-gray-400 text-white">
                     <div className='basis-1/5'>ID</div>
                     <div className='basis-1/5'>Title</div>
                     <div className='basis-1/5'>Description</div>

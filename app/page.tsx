@@ -1,6 +1,6 @@
 
 export default function Home() {
   return (
-        <div>test</div>
+        <div className='text-7xl'>Dashboard</div>
   );
 }

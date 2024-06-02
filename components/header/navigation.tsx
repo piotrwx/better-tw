@@ -20,7 +20,7 @@ const NavigationBar = () => {
             <ul className={'flex cursor-pointer flex-col'}>
                 {
                     navigationListArray.map((navElement, index) => (
-                        <li className={'p-2'} key={index}>
+                        <li className={'p-2 text-xl border-b last:border-0'} key={index}>
                             <Link href={navElement.link} title={navElement.title}>{navElement.name}</Link>
                         </li>
                     ))
