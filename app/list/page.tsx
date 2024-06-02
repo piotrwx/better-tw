@@ -34,11 +34,9 @@ const ListPage = () => {
     }, []);
 
     if (loading) {
-        return <div
-            className={
-            'backdrop-blur-sm h-screen top-0 left-0 fixed w-screen flex justify-center' +
-                ' uppercase text-5xl content-center items-center justify-items-center'}>
-            Loading...</div>;
+        return <div className='backdrop-blur-sm h-screen top-0 left-0 fixed w-screen flex justify-center uppercase text-5xl content-center items-center justify-items-center'>
+            Loading...
+        </div>;
     }
 
     return (
@@ -65,7 +63,7 @@ const ListPage = () => {
                             <div className="flex p-4 justify-between" key={index} title={item.title}>
                                 <div className='basis-1/5'>{item.id}</div>
                                 <div className='basis-1/5'>{item.title}</div>
-                                <div className='basis-1/5'>{item.description}</div>
+                                <div className='basis-1/5 max-h-24 overflow-hidden line-clamp-4'>{item.description}</div>
                                 <div className='basis-1/5'>{item.status}</div>
                                 <Button classNameElement='basis-1/5' typeButton="remove" idParam={item.id}/>
                                 <Button classNameElement='basis-1/5' typeButton="edit" idParam={item.id}/>
